@@ -1,6 +1,6 @@
 // import { db } from "../config/firebaseConfig";
 
-import { db } from "../config/remoteConfig";
+import { db } from "../config/firebaseConfig";
 
 export const getUserById = async (id: string) => {
   return await db.collection("USERS").doc(id).get();

@@ -1,18 +1,13 @@
-import { applicationDefault, getApps, initializeApp } from "firebase-admin/app";
+import { ServiceAccount, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
+import * as serviceAccount from "../serviceAccount.json";
+import { credential } from "firebase-admin";
 
-if (!getApps().length) {
-  initializeApp({
-    credential: applicationDefault(), // Uses default application credentials
-    projectId: "test-project-001",
+initializeApp({
+    credential: credential.cert(serviceAccount as ServiceAccount),
+    projectId: "test-project-3d72b",
   });
-}
 
 const db = getFirestore();
-
-db.settings({
-  host: "localhost:8080",
-  ssl: false,
-});
 
 export { db };
